@@ -38,11 +38,38 @@
 - (ssize_t)writterToSocket:(int)sockfdNum withChar:(NSString *)vptr {
     size_t nleft;
     ssize_t nwritten;
+    const char *ptr = [vptr cStringUsingEncoding:NSUTF8StringEncoding];
     
+    nleft = sizeof(ptr);
+    size_t n = nleft;
+    while (nleft > 0) {
+        if ((nwritten = write(sockfdNum, ptr, nleft)) <= 0) {
+            if (nwritten < 0 && errno == EINTR) {
+                nwritten = 0;
+            } else {
+                self.errorCode = WRITEERROR;
+                return(-1);
+            }
+        }
+        
+        nleft -= nwritten;
+        ptr += nwritten;
+    }
+    
+    return (n);
 }
 
 - (NSString *)recvFromSocket:(int)lsockfd withMaxChar:(int)max {
+    char recvline[max];
+    ssize_t n;
     
+    if ((n = recv(lsockfd, recvline, max-1, 0)) > 0) {
+        recvline[n] = '\0';
+        return [NSString stringWithCString:recvline encoding:NSUTF8StringEncoding];
+    } else {
+        self.errorCode = READERROR;
+        return @"Server terminated";
+    }
 }
 
 @end
