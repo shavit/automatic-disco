@@ -74,8 +74,59 @@
 
 @end
 
+int performAddressResolution() {
+    struct addrinfo *res; // Temporary store when looping through the linked list
+    struct addrinfo hints; // Hints for the type of addresses
+    
+    memset(&hints, 0, sizeof hints); // Ensure that the memory address is not corrupt
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM; // Limit to socket streams
+    
+    DNS *ai = [[DNS alloc] init];
+    [ai addrWithHostname: @"livestream.com" Service: @"443" andHints: &hints];
+    if (ai.errorCode != 0) {
+        NSLog(@"Error:  %@", [ai errorString]);
+        return -1;
+    }
+    
+    struct addrinfo *results = ai.results;
+    for (res = results; res != NULL; res = res->ai_next) {
+        void *addr;
+        NSString *ipver = @"";
+        char ipstr[INET6_ADDRSTRLEN];
+        
+        if (res->ai_family == AF_INET) {
+            struct sockaddr_in *ipv4 = (struct sockaddr_in*) res->ai_addr;
+            addr = &(ipv4->sin_addr);
+            ipver = @"IPv4";
+        } else if (res->ai_family == AF_INET6) {
+            struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *) res->ai_addr;
+            addr = &(ipv6->sin6_addr);
+            ipver = @"IPv6";
+        } else {
+            continue;
+        }
+        
+        inet_ntop(res->ai_family, addr, ipstr, sizeof(ipstr));
+        NSLog(@"Result: %@ %s", ipver, ipstr);
+        
+        DNS *aiTmp = [[DNS alloc] init];
+        [aiTmp nameWithSockaddr:res->ai_addr];
+        if (aiTmp.errorCode == 0) {
+            NSLog(@"%@ %@", aiTmp.hostname, aiTmp.service);
+        }
+    }
+    
+    freeaddrinfo(results);
+    
+    return 0;
+}
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    int addrRes;
+    
+    addrRes = performAddressResolution();
+    NSLog(@"Address resolution: %d", addrRes);
+    
     return 0;
 }

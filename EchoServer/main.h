@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <Foundation/Foundation.h>
+#include "dns.h"
 
 typedef NS_ENUM(NSUInteger, BSDClientErrorCode) {
     NOERROR,

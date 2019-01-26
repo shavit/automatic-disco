@@ -22,9 +22,9 @@ struct addrinfo hints;
 }
 
 -(void) setVars {
-    self.hostname = @"";
-    self.service = @"";
-    self.results = CFBridgingRetain(@"");
+    self.hostname = NULL;
+    self.service = NULL;
+    self.results = NULL;
     _errorCode = 0;
 }
 
