@@ -130,5 +130,14 @@ int main(int argc, const char * argv[]) {
     addrRes = performAddressResolution();
     NSLog(@"Address resolution: %d", addrRes);
     
+    Server *srv = [[Server alloc] initOnPort:3000];
+    if (srv.errorCode == NOERROR) {
+        NSLog(@"Starting the server");
+        [srv echoServerListenWithDescriptor:srv.listenfd];
+    } else {
+        NSLog(@"%@", [NSString stringWithFormat:@"Error starting the server: %d", srv.errorCode]);
+        return srv.errorCode;
+    }
+    
     return 0;
 }

@@ -28,12 +28,19 @@ typedef NS_ENUM(NSUInteger, BSDServerErrorCode) {
 @property (nonatomic) int errorCode, listenfd;
 
 /**
- Constructor method
+ Construct and start the server
+ 
+ Setup a socket by calling socket(), bind() and listen().
+ 
+    * TCP SOCK_STREAM
+    * UDP SOCK_DGRAM
  */
 - (id)initOnPort: (int)port;
 
 /**
- Start the server
+ Handle connections
+ 
+ Start a new thread to handle each connection
  */
 - (void)echoServerListenWithDescriptor: (int)lfd;
 
