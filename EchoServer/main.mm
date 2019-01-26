@@ -10,6 +10,7 @@
 #import <sys/types.h>
 #import <arpa/inet.h>
 
+/*
 @implementation BSDSocketClient
 
 - (id) initWithAddress:(NSString *)addr andPort:(int)port {
@@ -73,6 +74,7 @@
 }
 
 @end
+*/
 
 int performAddressResolution() {
     struct addrinfo *res; // Temporary store when looping through the linked list

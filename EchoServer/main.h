@@ -12,7 +12,9 @@
 #include <iostream>
 #include <Foundation/Foundation.h>
 #include "dns.h"
+#include "server.h"
 
+/*
 typedef NS_ENUM(NSUInteger, BSDClientErrorCode) {
     NOERROR,
     SOCKETERROR,
@@ -34,5 +36,6 @@ typedef NS_ENUM(NSUInteger, BSDClientErrorCode) {
 -(NSString *) recvFromSocket: (int)lsockfd withMaxChar: (int)max;
 
 @end
+ */
 
 #endif /* main_h */

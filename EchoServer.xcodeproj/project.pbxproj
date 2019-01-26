@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DE2C5D1821F6B47C004B4037 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DE2C5D1721F6B47C004B4037 /* main.mm */; };
 		DE60EA7821F6FE8A007DB2B3 /* dns.m in Sources */ = {isa = PBXBuildFile; fileRef = DE60EA7721F6FE8A007DB2B3 /* dns.m */; };
+		DEA936B921FCCF76001928DF /* server.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA936B821FCCF76001928DF /* server.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		DE2C5D1E21F6B54F004B4037 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		DE60EA7721F6FE8A007DB2B3 /* dns.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dns.m; sourceTree = "<group>"; };
 		DE60EA7921F6FFF2007DB2B3 /* dns.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dns.h; sourceTree = "<group>"; };
+		DEA936B821FCCF76001928DF /* server.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = server.m; sourceTree = "<group>"; };
+		DEA936BA21FCCF81001928DF /* server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 				DE2C5D1E21F6B54F004B4037 /* main.h */,
 				DE60EA7721F6FE8A007DB2B3 /* dns.m */,
 				DE60EA7921F6FFF2007DB2B3 /* dns.h */,
+				DEA936B821FCCF76001928DF /* server.m */,
+				DEA936BA21FCCF81001928DF /* server.h */,
 			);
 			path = EchoServer;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA936B921FCCF76001928DF /* server.m in Sources */,
 				DE2C5D1821F6B47C004B4037 /* main.mm in Sources */,
 				DE60EA7821F6FE8A007DB2B3 /* dns.m in Sources */,
 			);
